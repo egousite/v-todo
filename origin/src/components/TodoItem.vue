@@ -46,16 +46,23 @@
         </button>
       </div>
     </div>
-    <div class="no-tasks" v-if="!tasks.length">没有任务了</div>
+    <div class="no-tasks" v-if="!tasks.length">{{ showText }}</div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "TodoItem",
-  computed: {
-    ...mapState(["tasks"]),
+  props: {
+    tasks: {
+      type: Array,
+      default: () => [],
+    },
+    showText: {
+      type: String,
+      default: "暂无任务",
+    },
   },
   methods: {
     ...mapActions(["toggleTaskCompleted", "deleteTask"]),

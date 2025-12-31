@@ -18,6 +18,14 @@
   </div>
 </template>
 
+<!-- 
+
+1、清空任务（图标、还是按钮）
+2、筛选任务
+3、图表
+4、列表不同显示类型的路由组件 （列表，搜索、图标）
+-->
+
 <script>
 import HeaderNavBar from "./components/HeaderNavBar.vue";
 import AddTask from "./components/AddTodo.vue";
@@ -30,7 +38,7 @@ export default {
     TodoList,
     StatCard,
   },
-
+  mounted() {},
 };
 </script>
 

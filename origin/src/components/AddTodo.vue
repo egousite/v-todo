@@ -4,12 +4,12 @@
     <h2 class="card-title">添加新任务</h2>
     <div class="input-group">
       <input
-        v-model="newTask"
         type="text"
-        placeholder="输入任务内容..."
         class="input-field"
-        @keyup.enter="addTask"
         maxlength="64"
+        placeholder="输入任务内容..."
+        v-model="newTask"
+        @keyup.enter="addTask"
       />
       <div class="flex gap-2 mt-4">
         <button @click="addTask" class="btn btn-primary">
@@ -27,7 +27,6 @@
 
 <script>
 import { nanoid } from "nanoid";
-import { mapActions } from "vuex";
 export default {
   name: "AddTodo",
   data() {
@@ -36,14 +35,13 @@ export default {
     };
   },
   methods: {
-    // addTask() {},
-    // ...mapActions('addTask')
+    // 添加任务
     addTask() {
-      //
+      // 任务不能为空
       if (!this.newTask.trim()) {
-        // return this.$message.error("任务内容不能为空");
         return;
       }
+      // 调用 Vuex 中的 addTask 方法添加任务
       this.$store.dispatch("addTask", {
         id: nanoid(),
         text: this.newTask,
@@ -56,5 +54,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

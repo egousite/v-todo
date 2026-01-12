@@ -3,15 +3,8 @@
     <!-- 搜索框 -->
     <div class="mb-6">
       <div class="input-group">
-        <input
-          type="text"
-          maxlength="64"
-          placeholder="输入任务关键词并按下Enter..."
-          class="input-field"
-          ref="searchInput"
-          v-model="keyword"
-          @keyup.enter="search"
-        />
+        <input type="text" maxlength="64" placeholder="输入任务关键词并按下Enter..." class="input-field" ref="searchInput"
+          v-model="keyword" @keyup.enter="search" />
       </div>
     </div>
     <!-- 任务列表 -->
@@ -40,9 +33,11 @@ export default {
   methods: {
     // 根据关键词模糊搜索任务
     search() {
-      this.searchTasks = this.tasks.filter((item) =>
-        item.text.includes(this.keyword)
-      );
+      // 过滤任务列表，返回包含关键词的任务，不区分大小写
+      this.searchTasks = this.tasks.filter((item) => {
+        let text = item.text.toUpperCase()
+        return text.includes(this.keyword.toUpperCase())
+      });
 
       if (!this.searchTasks.length) {
         this.searchTasks = [];
@@ -56,5 +51,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
